@@ -16,6 +16,11 @@
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
             <Image  src="~/images/logo.png" width="76" />
+
+            <ActionItem @tap="openCamToScan"
+                        ios.systemIcon="16" ios.position="right"
+                        text="Ler QRCode" android.position="popup" />
+
         </ActionBar>
 
         <StackLayout>
@@ -128,6 +133,9 @@
     methods: {
       onDrawerButtonTap() {
         utils.showDrawer();
+      },
+      openCamToScan() {
+        console.log(`Abrindo câmera para scan do QRCode`)
       }
     }
   };

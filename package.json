@@ -16,7 +16,8 @@
     "nativescript-ui-sidedrawer": "~8.0.0",
     "nativescript-vue": "~2.4.0",
     "rxjs": "^6.5.0",
-    "tns-core-modules": "~6.5.0"
+    "tns-core-modules": "~6.5.0",
+    "vue-router": "^3.3.4"
   },
   "devDependencies": {
     "@babel/core": "~7.1.0",
