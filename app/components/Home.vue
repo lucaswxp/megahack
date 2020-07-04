@@ -31,50 +31,16 @@
               <StackLayout orientation="horizontal" class="scroll-menu box">
                 
                   <GridLayout rows="auto,auto,auto" ,
-                      columns="auto">
+                      columns="120"
+                      v-for="bar in bares">
                       <Image
-                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                          row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
-                      <Label text="28 online" row="2" columns="0" class="p" />
+                          :src="bar.capa"
+                          stretch="aspectFill"
+                          row="0" columns="0" width="120" height="80" />
+                      <Label :text="bar.title" row="1" columns="0" class="heading" />
+                      <Label :text="bar.onlineusers + ' online'" row="2" columns="0" class="p" />
                   </GridLayout>
 
-                  <GridLayout rows="auto,auto,auto" ,
-                      columns="auto">
-                      <Image
-                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                          row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
-                      <Label text="28 online" row="2" columns="0" class="p" />
-                  </GridLayout>
-                  
-                  <GridLayout rows="auto,auto,auto" ,
-                      columns="auto">
-                      <Image
-                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                          row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
-                      <Label text="28 online" row="2" columns="0" class="p" />
-                  </GridLayout>
-
-                  <GridLayout rows="auto,auto,auto" ,
-                      columns="auto">
-                      <Image
-                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                          row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
-                      <Label text="28 online" row="2" columns="0" class="p" />
-                  </GridLayout>
-
-                  <GridLayout rows="auto,auto,auto" ,
-                      columns="auto">
-                      <Image
-                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                          row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
-                      <Label text="28 online" row="2" columns="0" class="p" />
-                  </GridLayout>
-                
               </StackLayout>
           </ScrollView>
 
@@ -126,8 +92,9 @@
   import * as utils from "~/shared/utils";
   import SelectedPageService from "../shared/selected-page-service";
   import {BarcodeScanner} from "nativescript-barcodescanner";
-  import SelectBar from "./SelectBar";
-  
+  import TicketCredited from "./TicketCredited";
+  import * as fixture from '~/shared/fixture'
+
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
@@ -147,6 +114,7 @@
       animate()
     },
     data: () => ({
+        bares: fixture.bares,
         progress: '0%'
     }),
     computed: {
@@ -163,7 +131,7 @@
         this.isLoading = true
 
         const self = this
-        const front = false
+        const front = true
         new BarcodeScanner().scan({
           cancelLabel: "EXIT. Also, try the volume buttons!", // iOS only, default 'Close'
           cancelLabelBackgroundColor: "#333333", // iOS only, default '#000000' (black)
@@ -186,7 +154,7 @@
               console.log("--- scanned: " + result.text);
               // Note that this Promise is never invoked when a 'continuousScanCallback' function is provided
 
-                self.$navigateTo(SelectBar, {
+                self.$navigateTo(TicketCredited, {
                     clearHistory: true
                 });
             },
@@ -220,8 +188,8 @@
         border-radius: 20px;
         background: #fff;
         box-shadow: 2px 2px 1px rgba(255, 255, 255, .25);
-        margin: 40px;
-        padding: 20px;
+        margin: 25px;
+        padding: 10pt;
         .heading {
             font-size: 18px;
             font-weight: bold;

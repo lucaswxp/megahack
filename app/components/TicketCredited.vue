@@ -42,7 +42,7 @@
                     src="~/images/ticket-credited.png"
                     row="2" col="0" width="119" />
 
-                <Button text="Ver bares abertos" row="3" col="0" />
+                <Button text="Ver bares abertos" @tap="seeBars" row="3" col="0" />
             </GridLayout>
 
         </StackLayout>
@@ -55,6 +55,7 @@
   import SelectedPageService from "../shared/selected-page-service";
   import * as fixture from "../shared/fixture";
   import {screen} from "platform"
+  import SelectBar from "./SelectBar";
 
   export default {
     mounted() {
@@ -72,8 +73,8 @@
       onDrawerButtonTap() {
         utils.showDrawer();
       },
-      openCamToScan() {
-        console.log(`Abrindo câmera para scan do QRCode`)
+      seeBars() {
+        this.$navigateTo(SelectBar);
       }
     }
   };
