@@ -85,7 +85,7 @@
                     col="1" class="p" />
             </GridLayout>
 
-            <GridLayout rows="auto, auto" columns="*" class="box-ticket box">
+            <GridLayout rows="auto, auto, auto" columns="*" class="box-ticket box">
                 <GridLayout rows="*" columns="*,*" row="0" col="0">
                     <Image
                         src="~/images/ico-ticket.png"
@@ -98,12 +98,12 @@
                 </GridLayout>
 
 
-                <StackLayout orientation="horizontal" class="progressbar">
+                <StackLayout orientation="horizontal" class="progressbar" row="1" col="0">
                     <StackLayout orientation="horizontal" class="progress">
                     </StackLayout>
                 </StackLayout>
 
-                <Label textWrap="true">
+                <Label textWrap="true" row="2" col="0">
                     <FormattedString>
                         <Span text="Faltam " />
                         <Span text="6 tickets" fontAttributes="Bold" />
