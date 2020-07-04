@@ -37,9 +37,7 @@
 
                         <ScrollView orientation="horizontal" row="0" col="1">
                             <StackLayout orientation="horizontal">
-                                <GridLayout rows="320,*,*,*" ,
-                                    class="bar-hero"
-                                    columns="*" v-for="bar in bares">
+                                <GridLayout rows="320,*,*,*" class="bar-hero" columns="*" for="bar in bares">
                                     <Image
                                         :src="bar.logo"
                                         row="0" col="0" width="165" />

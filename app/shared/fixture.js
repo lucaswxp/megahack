@@ -25,4 +25,82 @@ const bares = [
         "onlineusers": 99
     },
 ]
-module.exports = { bares }
+
+const barTables = [
+    {
+        "name":"Mesa 1",
+        "online":8,
+        "members":[
+           {
+              "name":"Alice M.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Alice M.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Alice M.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Alice M.",
+              "picture": "~/images/bares/bruxo.png"
+           }
+        ]
+     },
+     {
+        "name":"Mesa 2",
+        "online":16,
+        "members":[
+           {
+              "name":"Alice M.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Marilda C.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Beatriz N.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Jusci L.",
+              "picture": "~/images/bares/bruxo.png"
+           }
+        ]
+     },
+     {
+        "name":"Mesa 3",
+        "online":11,
+        "members":[
+           {
+              "name":"Aldo F.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Marins M.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Leticia M.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+              "name":"Gilbert K.",
+              "picture": "~/images/bares/bruxo.png"
+           },
+           {
+                "name":"Mariana H.",
+                "picture": "~/images/bares/bruxo.png"
+            },
+            {
+                "name":"Pedro B.",
+                "picture": "~/images/bares/bruxo.png"
+            }
+        ]
+     }
+]
+
+module.exports = { bares, barTables }
