@@ -23,6 +23,13 @@
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'TicketCredited' ? ' -selected': '')"
+                            @tap="onNavigationItemTap(TicketCredited)">
+                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="1" text="TicketCredited" class="p-r-10"/>
+                </GridLayout>
+
+                <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' -selected': '')"
                             @tap="onNavigationItemTap(Browse)">
                     <Label col="0" text.decode="&#xf1ea;" class="nt-icon far"/>
@@ -62,6 +69,7 @@
   import SelectBar from "./SelectBar";
   import Featured from "./Featured";
   import Search from "./Search";
+  import TicketCredited from "./TicketCredited";
   import Settings from "./Settings";
   import * as utils from "~/shared/utils";
   import SelectedPageService from "~/shared/selected-page-service";
@@ -79,6 +87,7 @@
         Featured: Featured,
         Search: Search,
         Settings: Settings,
+        TicketCredited: TicketCredited,
         selectedPage: ""
       };
     },
@@ -88,6 +97,7 @@
       Featured,
       SelectBar,
       Search,
+      TicketCredited,
       Settings
     },
     methods: {
