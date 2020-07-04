@@ -18,10 +18,51 @@
             <Label class="action-bar-title" text="Home"/>
         </ActionBar>
 
-        <GridLayout class="page__content">
-            <Label class="page__content-icon fas" text.decode="&#xf015;"/>
-            <Label class="page__content-placeholder" :text="message"/>
-        </GridLayout>
+        <StackLayout>
+            <FlexboxLayout rows="1" columns="auto">
+                <GridLayout rows="auto,auto,auto" ,
+                    columns="auto" style="background-color:red">
+                    <Image
+                        src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                        row="0" columns="0" width="120" />
+                    <Label text="Bar do Rock" row="1" columns="0" />
+                    <Label text="28 online" row="2" columns="0" />
+                </GridLayout>
+
+                <GridLayout rows="auto,auto,auto" ,
+                    columns="auto" style="background-color:red">
+                    <Image
+                        src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                        row="0" columns="0" width="120" />
+                    <Label text="Bar do Rock" row="1" columns="0" />
+                    <Label text="28 online" row="2" columns="0" />
+                </GridLayout>
+            </FlexboxLayout>
+
+            <GridLayout rows="auto, auto" columns="50,*,100">
+                <Image
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1200px-QR_icon.svg.png"
+                    row="0" col="0" rowSpan="2" width="50" />
+                <Label text="Comprou uma bebida hoje?" row="0" col="1" />
+                <Label text="Scaneie o QR CODE e pegue seus tickets!" row="1"
+                    col="1" />
+            </GridLayout>
+
+            <GridLayout rows="auto, auto" columns="*">
+                <GridLayout rows="*" columns="*,*" row="0" col="0">
+                    <Image
+                        src="https://cdn2.vectorstock.com/i/1000x1000/53/81/gift-icon-vector-23205381.jpg"
+                        row="0" col="0" width="25" />
+                    <Image
+                        src="https://cdn2.vectorstock.com/i/1000x1000/53/81/gift-icon-vector-23205381.jpg"
+                        row="0" col="1" width="25" />
+                </GridLayout>
+
+                <Label text="Faltam 6 tickets para você ganhar um presente!"
+                    row="1" col="0" />
+            </GridLayout>
+        </StackLayout>
+        
     </Page>
 </template>
 
