@@ -6,6 +6,7 @@ import RadSideDrawer from "nativescript-ui-sidedrawer/vue";
 Vue.use(RadSideDrawer);
 
 Vue.config.silent = (TNS_ENV === 'production');
+Vue.registerElement('BarcodeScanner', () => require('nativescript-barcodescanner').BarcodeScannerView)
 
 new Vue({
     render (h) {

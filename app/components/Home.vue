@@ -15,12 +15,13 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Image  src="~/images/logo.png" width="71" />
 
-            <ActionItem @tap="openCamToScan"
-                        ios.systemIcon="16" ios.position="right"
-                        text="Ler QRCode" android.position="popup" />
+            <Image horizontalAlignment="center" src="~/images/logo.png" width="71" />
 
+
+            <ActionItem @tap="openScanner()">
+            <Image horizontalAlignment="right" src="~/images/ico-qrcode-action.png" width="23" />
+            </ActionItem>
         </ActionBar>
 
         <StackLayout>
@@ -124,7 +125,9 @@
 <script>
   import * as utils from "~/shared/utils";
   import SelectedPageService from "../shared/selected-page-service";
-
+  import {BarcodeScanner} from "nativescript-barcodescanner";
+  import SelectBar from "./SelectBar";
+  
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
@@ -155,8 +158,45 @@
       onDrawerButtonTap() {
         utils.showDrawer();
       },
-      openCamToScan() {
-        console.log(`Abrindo câmera para scan do QRCode`)
+      openScanner() {
+        if(this.isLoading) return
+        this.isLoading = true
+
+        const self = this
+        const front = false
+        new BarcodeScanner().scan({
+          cancelLabel: "EXIT. Also, try the volume buttons!", // iOS only, default 'Close'
+          cancelLabelBackgroundColor: "#333333", // iOS only, default '#000000' (black)
+          message: "Use the volume buttons for extra light", // Android only, default is 'Place a barcode inside the viewfinder rectangle to scan it.'
+          preferFrontCamera: front,     // Android only, default false
+          showFlipCameraButton: true,   // default false
+          showTorchButton: true,        // iOS only, default false
+          torchOn: false,               // launch with the flashlight on (default false)
+          resultDisplayDuration: 500,   // Android only, default 1500 (ms), set to 0 to disable echoing the scanned text
+          beepOnScan: true,             // Play or Suppress beep on scan (default true)
+          openSettingsIfPermissionWasPreviouslyDenied: true, // On iOS you can send the user to the settings app if access was previously denied
+          closeCallback: () => {
+            console.log("Scanner closed @ " + new Date().getTime());
+
+            self.isLoading = false
+          }
+        }).then(
+            function (result) {
+              self.isLoading = false
+              console.log("--- scanned: " + result.text);
+              // Note that this Promise is never invoked when a 'continuousScanCallback' function is provided
+              setTimeout(function () {
+
+                self.$navigateTo(SelectBar, {
+                    clearHistory: true
+                });
+              }, 500);
+            },
+            function (errorMessage) {
+              self.isLoading = false
+              console.log("No scan. " + errorMessage);
+            }
+        );
       }
     }
   };
