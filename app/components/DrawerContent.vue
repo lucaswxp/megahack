@@ -16,6 +16,13 @@
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'SelectBar' ? ' -selected': '')"
+                            @tap="onNavigationItemTap(SelectBar)">
+                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="1" text="SelectBar" class="p-r-10"/>
+                </GridLayout>
+
+                <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' -selected': '')"
                             @tap="onNavigationItemTap(Browse)">
                     <Label col="0" text.decode="&#xf1ea;" class="nt-icon far"/>
@@ -52,6 +59,7 @@
 <script>
   import Home from "./Home";
   import Browse from "./Browse";
+  import SelectBar from "./SelectBar";
   import Featured from "./Featured";
   import Search from "./Search";
   import Settings from "./Settings";
@@ -67,6 +75,7 @@
       return {
         Home: Home,
         Browse: Browse,
+        SelectBar: SelectBar,
         Featured: Featured,
         Search: Search,
         Settings: Settings,
@@ -77,6 +86,7 @@
       Home,
       Browse,
       Featured,
+      SelectBar,
       Search,
       Settings
     },
