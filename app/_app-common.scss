@@ -41,3 +41,20 @@
 .nt-drawer__header-image {
     color: const(grey);
 }
+
+// generic components
+ActionBar {
+    background: #8E00FE;
+    box-shadow: none;
+    border-width: 0;
+    border-color: transparent;
+    android-elevation: 0;
+    margin-bottom: 40px;
+}
+Page {
+    font-family: Roboto;
+}
+
+[fontAttributes=Bold] {
+    font-weight: bold;
+}

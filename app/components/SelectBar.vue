@@ -15,7 +15,8 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Label class="action-bar-title" text="ambev"/>
+                        
+            <Image  src="~/images/logo.png" width="71" />
 
             <ActionItem @tap="openCamToScan"
                         ios.systemIcon="16" ios.position="right"
@@ -25,61 +26,47 @@
 
         <StackLayout>
 
-            <ScrollView orientation="horizontal">
                 <StackLayout orientation="horizontal" class="scroll-menu">
                     
-                    <GridLayout rows="320,*,*,*" ,
-                        columns="*">
+                    <GridLayout rows="*" columns="40,*,40">
                         <Image
-                            src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                            row="0" col="0" width="100%" />
-                        <Label text="Bar do Rock" row="1" col="0" />
-                        <Button text="Entrar no Bar" @tap="onButtonTap" row="2" col="0" />
-                        <Label text="28 online" row="3" col="0" />
+                            src="~/images/ico-prev.png"
+                            width="25"
+                            horizontalAlignment="center"
+                            row="0" col="0" />
+
+                        <ScrollView orientation="horizontal" row="0" col="1">
+                            <StackLayout orientation="horizontal">
+                                <GridLayout rows="320,*,*,*" ,
+                                    class="bar-hero"
+                                    columns="*" v-for="bar in bares">
+                                    <Image
+                                        :src="bar.logo"
+                                        row="0" col="0" width="165" />
+                                    <Label :text="bar.title" class="bar-title" row="1" col="0" />
+
+                                    <Button text="Entrar no Bar" row="2" col="0" />
+
+                                    <Label class="bar-online" row="3" col="0">
+                                        <FormattedString>
+                                            <Span :text="bar.onlineusers + ' usuários '" />
+                                            <Span text="online" fontAttributes="Bold" />
+                                        </FormattedString>
+                                    </Label>
+                                </GridLayout>
+                            </StackLayout>
+                        </ScrollView>
+
+                        <Image
+                            src="~/images/ico-next.png"
+                            width="25"
+                            horizontalAlignment="center"
+                            row="0" col="2" />
+                        
                     </GridLayout>
 
-                    <GridLayout rows="320,*,*,*" ,
-                        columns="*">
-                        <Image
-                            src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                            row="0" col="0" width="100%" />
-                        <Label text="Bar do Rock" row="1" col="0" />
-                        <Button text="Entrar no Bar" @tap="onButtonTap" row="2" col="0" />
-                        <Label text="28 online" row="3" col="0" />
-                    </GridLayout>
-                    
-                    <GridLayout rows="320,*,*,*" ,
-                        columns="*">
-                        <Image
-                            src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                            row="0" col="0" width="100%" />
-                        <Label text="Bar do Rock" row="1" col="0" />
-                        <Button text="Entrar no Bar" @tap="onButtonTap" row="2" col="0" />
-                        <Label text="28 online" row="3" col="0" />
-                    </GridLayout>
-
-                    <GridLayout rows="320,*,*,*" ,
-                        columns="*">
-                        <Image
-                            src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                            row="0" col="0" width="100%" />
-                        <Label text="Bar do Rock" row="1" col="0" />
-                        <Button text="Entrar no Bar" @tap="onButtonTap" row="2" col="0" />
-                        <Label text="28 online" row="3" col="0" />
-                    </GridLayout>
-
-                    <GridLayout rows="320,*,*,*" ,
-                        columns="*">
-                        <Image
-                            src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                            row="0" col="0" width="100%" />
-                        <Label text="Bar do Rock" row="1" col="0" />
-                        <Button text="Entrar no Bar" @tap="onButtonTap" row="2" col="0" />
-                        <Label text="28 online" row="3" col="0" />
-                    </GridLayout>
                     
                 </StackLayout>
-            </ScrollView>
 
         </StackLayout>
 
@@ -89,11 +76,17 @@
 <script>
   import * as utils from "~/shared/utils";
   import SelectedPageService from "../shared/selected-page-service";
+  import * as fixture from "../shared/fixture";
+  import {screen} from "platform"
 
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
+      console.log(screen.mainScreen.widthPixels, 'hey')
     },
+    data: () => ({
+        bares: fixture.bares
+    }),
     computed: {
       message() {
         return "<!-- Page content goes here -->";
@@ -115,5 +108,27 @@
     @import '~@nativescript/theme/scss/variables/blue';
     // End custom common variables
 
+    .bar-hero {
+        text-align: center;
+        .bar-title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .bar-online {
+            font-size: 16px;
+        }
+        Button {
+            height: 150px;
+            width: 760px;
+            background: #8E00FE;
+            color: #fff;
+            border-radius: 32px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: none;
+            text-transform: uppercase;
+            android-elevation: 0;
+        }
+    }
     // Custom styles
 </style>
