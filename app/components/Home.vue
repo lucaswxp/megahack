@@ -185,12 +185,10 @@
               self.isLoading = false
               console.log("--- scanned: " + result.text);
               // Note that this Promise is never invoked when a 'continuousScanCallback' function is provided
-              setTimeout(function () {
 
                 self.$navigateTo(SelectBar, {
                     clearHistory: true
                 });
-              }, 500);
             },
             function (errorMessage) {
               self.isLoading = false

@@ -28,42 +28,45 @@
 
                 <StackLayout orientation="horizontal" class="scroll-menu">
                     
+                    <Pager height="100%" :selectedIndex="selectedBar">
+
+                    <PagerItem  v-for="bar in bares">
                     <GridLayout rows="*" columns="40,*,40">
                         <Image
                             src="~/images/ico-prev.png"
                             width="25"
                             horizontalAlignment="center"
-                            row="0" col="0" />
+                            row="0" col="0" @tap="prev" />
 
-                        <ScrollView orientation="horizontal" row="0" col="1">
-                            <StackLayout orientation="horizontal">
-                                <GridLayout rows="320,*,*,*" ,
-                                    class="bar-hero"
-                                    columns="*" v-for="bar in bares">
-                                    <Image
-                                        :src="bar.logo"
-                                        row="0" col="0" width="165" />
-                                    <Label :text="bar.title" class="bar-title" row="1" col="0" />
+                        <StackLayout orientation="horizontal" row="0" col="1">
+                            <GridLayout rows="320,*,*,*" ,
+                                class="bar-hero"
+                                columns="*">
+                                <Image
+                                    :src="bar.logo"
+                                    row="0" col="0" width="165" />
+                                <Label :text="bar.title" class="bar-title" row="1" col="0" />
 
-                                    <Button text="Entrar no Bar" row="2" col="0" />
+                                <Button text="Entrar no Bar" row="2" col="0" />
 
-                                    <Label class="bar-online" row="3" col="0">
-                                        <FormattedString>
-                                            <Span :text="bar.onlineusers + ' usuários '" />
-                                            <Span text="online" fontAttributes="Bold" />
-                                        </FormattedString>
-                                    </Label>
-                                </GridLayout>
-                            </StackLayout>
-                        </ScrollView>
+                                <Label class="bar-online" row="3" col="0">
+                                    <FormattedString>
+                                        <Span :text="bar.onlineusers + ' usuários '" />
+                                        <Span text="online" fontAttributes="Bold" />
+                                    </FormattedString>
+                                </Label>
+                            </GridLayout>
+                        </StackLayout>
 
                         <Image
                             src="~/images/ico-next.png"
                             width="25"
                             horizontalAlignment="center"
-                            row="0" col="2" />
+                            row="0" col="2" @tap="next" />
                         
                     </GridLayout>
+                    </PagerItem>
+                </Pager>
 
                     
                 </StackLayout>
@@ -82,10 +85,10 @@
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
-      console.log(screen.mainScreen.widthPixels, 'hey')
     },
     data: () => ({
-        bares: fixture.bares
+        bares: fixture.bares,
+        selectedBar: 0
     }),
     computed: {
       message() {
@@ -93,6 +96,14 @@
       }
     },
     methods: {
+      next() {
+          this.selectedBar++
+          if(this.selectedBar == this.bares.length) this.selectedBar = 0
+      },
+      prev() {
+          this.selectedBar--
+          if(this.selectedBar == -1) this.selectedBar = (this.bares.length-1)
+      },
       onDrawerButtonTap() {
         utils.showDrawer();
       },
@@ -118,8 +129,8 @@
             font-size: 16px;
         }
         Button {
-            height: 150px;
-            width: 760px;
+            height: 50pt;
+            width: 280pt;
             background: #8E00FE;
             color: #fff;
             border-radius: 32px;
