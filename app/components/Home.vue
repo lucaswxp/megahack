@@ -103,7 +103,7 @@
 
 
                 <StackLayout orientation="horizontal" class="progressbar" row="1" col="0">
-                    <StackLayout orientation="horizontal" class="progress" v-bind:style="{ width: progressbar }">
+                    <StackLayout orientation="horizontal" class="progress">
                     </StackLayout>
                 </StackLayout>
 
@@ -211,6 +211,7 @@
             border-radius:  16px;
             .progress {
                 height: 100%;
+                width: 40%;
                 border-radius: 16px;
                 background: linear-gradient(to right, #8E00FE, #a163de);
             }
