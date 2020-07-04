@@ -15,83 +15,97 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Label class="action-bar-title" text="Ambev"/>
+            <Image  src="~/images/logo.png" width="76" />
         </ActionBar>
 
         <StackLayout>
             <ScrollView orientation="horizontal">
-              <StackLayout orientation="horizontal" class="scroll-menu">
+              <StackLayout orientation="horizontal" class="scroll-menu box">
                 
                   <GridLayout rows="auto,auto,auto" ,
-                      columns="auto" style="background-color:red">
+                      columns="auto">
                       <Image
                           src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
                           row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" />
-                      <Label text="28 online" row="2" columns="0" />
+                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
+                      <Label text="28 online" row="2" columns="0" class="p" />
                   </GridLayout>
 
                   <GridLayout rows="auto,auto,auto" ,
-                      columns="auto" style="background-color:red">
+                      columns="auto">
                       <Image
                           src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
                           row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" />
-                      <Label text="28 online" row="2" columns="0" />
+                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
+                      <Label text="28 online" row="2" columns="0" class="p" />
                   </GridLayout>
                   
                   <GridLayout rows="auto,auto,auto" ,
-                      columns="auto" style="background-color:red">
+                      columns="auto">
                       <Image
                           src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
                           row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" />
-                      <Label text="28 online" row="2" columns="0" />
+                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
+                      <Label text="28 online" row="2" columns="0" class="p" />
                   </GridLayout>
 
                   <GridLayout rows="auto,auto,auto" ,
-                      columns="auto" style="background-color:red">
+                      columns="auto">
                       <Image
                           src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
                           row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" />
-                      <Label text="28 online" row="2" columns="0" />
+                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
+                      <Label text="28 online" row="2" columns="0" class="p" />
                   </GridLayout>
 
                   <GridLayout rows="auto,auto,auto" ,
-                      columns="auto" style="background-color:red">
+                      columns="auto">
                       <Image
                           src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
                           row="0" columns="0" width="120" />
-                      <Label text="Bar do Rock" row="1" columns="0" />
-                      <Label text="28 online" row="2" columns="0" />
+                      <Label text="Bar do Rock" row="1" columns="0" class="heading" />
+                      <Label text="28 online" row="2" columns="0" class="p" />
                   </GridLayout>
                 
               </StackLayout>
           </ScrollView>
 
 
-            <GridLayout rows="auto, auto" columns="50,*,100">
+            <GridLayout rows="auto, auto" columns="50,*,100" class="box-qrcode box">
                 <Image
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/QR_icon.svg/1200px-QR_icon.svg.png"
+                    src="~/images/box-ticket-qrcode.png"
                     row="0" col="0" rowSpan="2" width="50" />
-                <Label text="Comprou uma bebida hoje?" row="0" col="1" />
+                <Label text="Comprou uma bebida hoje?" row="0" col="1" class="heading" />
                 <Label text="Scaneie o QR CODE e pegue seus tickets!" row="1"
-                    col="1" />
+                    col="1" class="p" />
             </GridLayout>
 
-            <GridLayout rows="auto, auto" columns="*">
+            <GridLayout rows="auto, auto" columns="*" class="box-ticket box">
                 <GridLayout rows="*" columns="*,*" row="0" col="0">
                     <Image
-                        src="https://cdn2.vectorstock.com/i/1000x1000/53/81/gift-icon-vector-23205381.jpg"
-                        row="0" col="0" width="25" />
+                        src="~/images/ico-ticket.png"
+                        width="25"
+                        row="0" col="0" />
                     <Image
-                        src="https://cdn2.vectorstock.com/i/1000x1000/53/81/gift-icon-vector-23205381.jpg"
-                        row="0" col="1" width="25" />
+                        src="~/images/ico-gift.png"
+                        width="21"
+                        row="0" col="1" />
                 </GridLayout>
 
-                <Label text="Faltam 6 tickets para você ganhar um presente!"
-                    row="1" col="0" />
+
+                <StackLayout orientation="horizontal" class="progressbar">
+                    <StackLayout orientation="horizontal" class="progress">
+                    </StackLayout>
+                </StackLayout>
+
+                <Label textWrap="true">
+                    <FormattedString>
+                        <Span text="Faltam " />
+                        <Span text="6 tickets" fontAttributes="Bold" />
+                        <Span text=" para você ganhar um" />
+                        <Span text="presente!" fontAttributes="Bold" />
+                    </FormattedString>
+                </Label>
             </GridLayout>
         </StackLayout>
 
@@ -124,5 +138,65 @@
     @import '~@nativescript/theme/scss/variables/blue';
     // End custom common variables
 
+    ActionBar {
+        background: #8E00FE;
+        box-shadow: none;
+        border-width: 1;
+        border-color: transparent;
+    }
+    Page {
+        background: linear-gradient(#8E00FE, #a163de);
+        font-family: Roboto;
+    }
+
+    .box {
+        padding: 10px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 2px 2px 1px rgba(255, 255, 255, .25);
+        margin: 20px;
+        .heading {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .p {
+            font-size: 16px;
+        }
+        // lista de bares
+        GridLayout {
+            margin-right: 8px;
+            Image {
+                border-radius: 10px;
+                margin-bottom: 3px;
+            }
+        }
+    }
+    .box-qrcode {
+        Image {
+            padding-right: 12px;
+        }
+    }
+    .box-ticket {
+        border: 1px solid #000;
+        .progressbar {
+            margin-top: 25px;
+            height: 12px;
+            background: #AEAEAE;
+            border-radius:  16px;
+            .progress {
+                width: 40%;
+                height: 100%;
+                border-radius: 16px;
+                background: linear-gradient(to right, #8E00FE, #a163de);
+            }
+        }
+        Label {
+            text-align: center;
+            font-size: 12px;
+            [fontAttributes=Bold] {
+                font-weight: bold;
+            }
+        }
+    }
     // Custom styles
 </style>
