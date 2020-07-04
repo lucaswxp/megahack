@@ -15,7 +15,7 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Image  src="~/images/logo.png" width="76" />
+            <Image  src="~/images/logo.png" width="71" />
 
             <ActionItem @tap="openCamToScan"
                         ios.systemIcon="16" ios.position="right"
@@ -24,6 +24,8 @@
         </ActionBar>
 
         <StackLayout>
+            <Label class="h1 wrap" text="Bares abertos agora" />
+
             <ScrollView orientation="horizontal">
               <StackLayout orientation="horizontal" class="scroll-menu box">
                 
@@ -76,39 +78,41 @@
           </ScrollView>
 
 
-            <GridLayout rows="auto, auto" columns="50,*,100" class="box-qrcode box">
+            <GridLayout rows="auto, auto" columns="50,*" class="box-qrcode box">
                 <Image
                     src="~/images/box-ticket-qrcode.png"
                     row="0" col="0" rowSpan="2" width="50" />
                 <Label text="Comprou uma bebida hoje?" row="0" col="1" class="heading" />
                 <Label text="Scaneie o QR CODE e pegue seus tickets!" row="1"
-                    col="1" class="p" />
+                    col="1" class="p" textWrap="true" verticalAlignment="top" />
             </GridLayout>
 
-            <GridLayout rows="auto, auto" columns="*" class="box-ticket box">
+            <GridLayout rows="auto, 40, auto" columns="*" class="box-ticket box">
                 <GridLayout rows="*" columns="*,*" row="0" col="0">
                     <Image
                         src="~/images/ico-ticket.png"
                         width="25"
+                        horizontalAlignment="left"
                         row="0" col="0" />
                     <Image
                         src="~/images/ico-gift.png"
                         width="21"
+                        horizontalAlignment="right"
                         row="0" col="1" />
                 </GridLayout>
 
 
-                <StackLayout orientation="horizontal" class="progressbar">
-                    <StackLayout orientation="horizontal" class="progress">
+                <StackLayout orientation="horizontal" class="progressbar" row="1" col="0">
+                    <StackLayout orientation="horizontal" class="progress" v-bind:style="{ width: progressbar }">
                     </StackLayout>
                 </StackLayout>
 
-                <Label textWrap="true">
+                <Label textWrap="true" row="2" col="0">
                     <FormattedString>
                         <Span text="Faltam " />
                         <Span text="6 tickets" fontAttributes="Bold" />
                         <Span text=" para você ganhar um" />
-                        <Span text="presente!" fontAttributes="Bold" />
+                        <Span text=" presente!" fontAttributes="Bold" />
                     </FormattedString>
                 </Label>
             </GridLayout>
@@ -124,6 +128,9 @@
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
+    },
+    data: {
+        progressbar: '80%'
     },
     computed: {
       message() {
@@ -149,20 +156,32 @@
     ActionBar {
         background: #8E00FE;
         box-shadow: none;
-        border-width: 1;
+        border-width: 0;
         border-color: transparent;
+        android-elevation: 0;
+        margin-bottom: 40px;
     }
     Page {
         background: linear-gradient(#8E00FE, #a163de);
         font-family: Roboto;
     }
+    .box, .wrap {
+        margin: 0 40px;
+    }
+
+    .h1 {
+        color: #fff;
+        font-size: 18px;
+        font-weight:bold;
+        //margin: 20px 0;
+    }
 
     .box {
-        padding: 10px;
-        border-radius: 10px;
+        border-radius: 20px;
         background: #fff;
         box-shadow: 2px 2px 1px rgba(255, 255, 255, .25);
-        margin: 20px;
+        margin: 40px;
+        padding: 20px;
         .heading {
             font-size: 18px;
             font-weight: bold;
@@ -172,27 +191,25 @@
         }
         // lista de bares
         GridLayout {
-            margin-right: 8px;
+            margin-right: 20px;
             Image {
-                border-radius: 10px;
+                border-radius: 18px;
                 margin-bottom: 3px;
             }
         }
     }
     .box-qrcode {
-        Image {
-            padding-right: 12px;
+        Label {
+            margin: 0 32px;
         }
     }
     .box-ticket {
         border: 1px solid #000;
         .progressbar {
-            margin-top: 25px;
-            height: 12px;
+            height: 24px;
             background: #AEAEAE;
             border-radius:  16px;
             .progress {
-                width: 40%;
                 height: 100%;
                 border-radius: 16px;
                 background: linear-gradient(to right, #8E00FE, #a163de);
