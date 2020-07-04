@@ -103,7 +103,7 @@
 
 
                 <StackLayout orientation="horizontal" class="progressbar" row="1" col="0">
-                    <StackLayout orientation="horizontal" class="progress">
+                    <StackLayout orientation="horizontal" class="progress" v-bind:style="{width: progress}">
                     </StackLayout>
                 </StackLayout>
 
@@ -128,10 +128,24 @@
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
+      let i = 1;
+      const MAX = 80
+      // porcaria isso TODO: animação de vdd
+      const animate = () => {
+        setTimeout(() => {
+            this.progress = i + '%'
+            i += 2
+            if(i <= MAX){
+                animate()
+            }
+        }, 1)
+      }
+
+      animate()
     },
-    data: {
-        progressbar: '80%'
-    },
+    data: () => ({
+        progress: '0%'
+    }),
     computed: {
       message() {
         return "<!-- Page content goes here -->";
@@ -149,21 +163,9 @@
 </script>
 
 <style scoped lang="scss">
-    // Start custom common variables
-    @import '~@nativescript/theme/scss/variables/blue';
-    // End custom common variables
 
-    ActionBar {
-        background: #8E00FE;
-        box-shadow: none;
-        border-width: 0;
-        border-color: transparent;
-        android-elevation: 0;
-        margin-bottom: 40px;
-    }
     Page {
         background: linear-gradient(#8E00FE, #a163de);
-        font-family: Roboto;
     }
     .box, .wrap {
         margin: 0 40px;
@@ -210,8 +212,9 @@
             background: #AEAEAE;
             border-radius:  16px;
             .progress {
+                transition: width 0.3s linear;
                 height: 100%;
-                width: 40%;
+                width: 0;
                 border-radius: 16px;
                 background: linear-gradient(to right, #8E00FE, #a163de);
             }
@@ -219,9 +222,6 @@
         Label {
             text-align: center;
             font-size: 12px;
-            [fontAttributes=Bold] {
-                font-weight: bold;
-            }
         }
     }
     // Custom styles
