@@ -15,29 +15,61 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Label class="action-bar-title" text="Home"/>
+            <Label class="action-bar-title" text="Ambev"/>
         </ActionBar>
 
         <StackLayout>
-            <FlexboxLayout rows="1" columns="auto">
-                <GridLayout rows="auto,auto,auto" ,
-                    columns="auto" style="background-color:red">
-                    <Image
-                        src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                        row="0" columns="0" width="120" />
-                    <Label text="Bar do Rock" row="1" columns="0" />
-                    <Label text="28 online" row="2" columns="0" />
-                </GridLayout>
+            <ScrollView orientation="horizontal">
+              <StackLayout orientation="horizontal" class="scroll-menu">
+                
+                  <GridLayout rows="auto,auto,auto" ,
+                      columns="auto" style="background-color:red">
+                      <Image
+                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                          row="0" columns="0" width="120" />
+                      <Label text="Bar do Rock" row="1" columns="0" />
+                      <Label text="28 online" row="2" columns="0" />
+                  </GridLayout>
 
-                <GridLayout rows="auto,auto,auto" ,
-                    columns="auto" style="background-color:red">
-                    <Image
-                        src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
-                        row="0" columns="0" width="120" />
-                    <Label text="Bar do Rock" row="1" columns="0" />
-                    <Label text="28 online" row="2" columns="0" />
-                </GridLayout>
-            </FlexboxLayout>
+                  <GridLayout rows="auto,auto,auto" ,
+                      columns="auto" style="background-color:red">
+                      <Image
+                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                          row="0" columns="0" width="120" />
+                      <Label text="Bar do Rock" row="1" columns="0" />
+                      <Label text="28 online" row="2" columns="0" />
+                  </GridLayout>
+                  
+                  <GridLayout rows="auto,auto,auto" ,
+                      columns="auto" style="background-color:red">
+                      <Image
+                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                          row="0" columns="0" width="120" />
+                      <Label text="Bar do Rock" row="1" columns="0" />
+                      <Label text="28 online" row="2" columns="0" />
+                  </GridLayout>
+
+                  <GridLayout rows="auto,auto,auto" ,
+                      columns="auto" style="background-color:red">
+                      <Image
+                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                          row="0" columns="0" width="120" />
+                      <Label text="Bar do Rock" row="1" columns="0" />
+                      <Label text="28 online" row="2" columns="0" />
+                  </GridLayout>
+
+                  <GridLayout rows="auto,auto,auto" ,
+                      columns="auto" style="background-color:red">
+                      <Image
+                          src="https://www.ahstatic.com/photos/3269_rsr001_00_p_1024x768.jpg"
+                          row="0" columns="0" width="120" />
+                      <Label text="Bar do Rock" row="1" columns="0" />
+                      <Label text="28 online" row="2" columns="0" />
+                  </GridLayout>
+                
+              </StackLayout>
+          </ScrollView>
+
 
             <GridLayout rows="auto, auto" columns="50,*,100">
                 <Image
@@ -62,7 +94,7 @@
                     row="1" col="0" />
             </GridLayout>
         </StackLayout>
-        
+
     </Page>
 </template>
 
