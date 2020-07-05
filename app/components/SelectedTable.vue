@@ -26,7 +26,7 @@
             </ActionItem>
         </ActionBar>
 
-        <GridLayout columns="*" rows="auto,auto,*" @tap="showModal">
+        <GridLayout columns="*" rows="auto,auto,*">
             <!-- musica tocando -->
             <StackLayout class="player wrap" orientation="horizontal" col="0" row="0">
                 <Image src="~/images/ico-music.png"
@@ -50,7 +50,17 @@
             </StackLayout>
 
             <!-- Chat -->
-            <StackLayout>
+            <StackLayout row="2" col="0">
+                <ScrollView height="90%">
+                        <!--the chat takes place here--> 
+                </ScrollView>
+
+                <StackLayout height="10%">
+                    <GridLayout columns="*,auto" style="padding: 10">
+                        <TextField class="chatTextField" row="0" col="0" v-model="message"></TextField>
+                        <Button class="chatBtn" row="0" col="1" text="enviar" @tap="chat(message)"></Button>
+                    </GridLayout>
+                </StackLayout>
             </StackLayout>
 
         </GridLayout>
@@ -65,8 +75,14 @@
 
   export default {
     data: () => ({
+<<<<<<< HEAD
         bars: fixture.bares,
         table:  fixture.barTables[2]
+=======
+        progress: '0%',
+        bars:  fixture.barTables,
+        message: ""
+>>>>>>> a27d1bc661f33fdc7a4bbd1ca5012362526474eb
     }),
     computed: {
       message() {
@@ -82,6 +98,9 @@
       },
       showModal() {
         this.$showModal(ModalDrink);
+      },
+      chat(message) {
+          alert(message)
       }
     }
   };
