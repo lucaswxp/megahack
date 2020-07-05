@@ -41,7 +41,7 @@
             </StackLayout>
 
             <!-- barra de amigos na mesa -->
-            <StackLayout  class="scroll-menu box" orientation="horizontal" col="0" row="1">
+            <StackLayout  class="scroll-menu box friends" orientation="horizontal" col="0" row="1">
                 <StackLayout v-for="(person,index) in table.members" :key="index">
                     <Image :src="person.avatar"
                     width="50" class="img-circle" borderRadius="100" row="0" col="0" />
@@ -52,13 +52,22 @@
             <!-- Chat -->
             <StackLayout row="2" col="0">
                 <ScrollView height="80%">
-                        <!--the chat takes place here--> 
+                    <StackLayout verticalAlignment="bottom">
+                        <StackLayout v-for="conversation in conversations" :horizontalAlignment="isOwner(conversation) ? 'left' : 'right'" class="message-stream wrap">
+                            <Label :text="conversation.sender.name" class="sender" />
+                            <StackLayout>
+                                <GridLayout v-for="(message, index) in conversation.messages" columns="auto">
+                                    <Label col="0" row="0" textWrap="true" class="message" :text="message.message" />
+                                </GridLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
                 </ScrollView>
 
                 <StackLayout height="20%" class="message-input">
                     <GridLayout columns="auto,*" style="padding: 10">
                         <Image src="~/images/ico-chat-smile.png" width="26" row="0" col="0" />
-                        <TextField class="chatTextField" row="0" @tap="cleanMessage" col="1" v-model="message"></TextField>
+                        <TextField class="chatTextField" row="0" @focus="cleanMessage" @returnPress="sendMessage" col="1" v-model="message"></TextField>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>
@@ -73,23 +82,56 @@
   import * as fixture from "../shared/fixture";
   import ModalDrink from "./ModalDrink";
 
+  const mesa = fixture.barTables[2]
+  const logged = mesa.members[0]
+
   export default {
     data: () => ({
         bars: fixture.bares,
-        table:  fixture.barTables[2],
-        message: "Fale um oi..."
+        table:  mesa,
+        message: "Fale um oi...",
+        conversations: [
+        ]
     }),
     computed: {
-      message() {
-        return "<!-- Page content goes here -->";
-      }
+        
     },
     methods: {
       onDrawerButtonTap() {
         utils.showDrawer();
       },
+      sendMessage(message, from){
+          const conversation = this.conversations.slice(-1)[0]
+
+          if(typeof message != 'string') message = ''
+          if(!from) from = logged
+
+          const msg = {message: message||this.message}
+          if(conversation && conversation.sender == from){
+              conversation.messages.push(msg)
+          }else{
+              this.conversations.push({
+                  sender: from,
+                  messages: [msg]
+              })
+          }
+          this.cleanMessage()
+
+
+          if(msg.message == 'Como vai?'){
+              setTimeout(() => {
+                this.sendMessage('Opa, seja bem-vinda!', mesa.members[1])
+              }, 2000)
+              setTimeout(() => {
+                this.sendMessage('Olá, tudo bem? :)', mesa.members[2])
+              }, 4000)
+          }
+      },
       cleanMessage() {
           this.message = ''
+      },
+      isOwner(conversation){
+          return conversation.sender == logged
       },
       count(table){
           return table.members.length
@@ -97,8 +139,8 @@
       showModal() {
         this.$showModal(ModalDrink);
       },
-      chat(message) {
-          alert(message)
+      chat() {
+          alert(this.message)
       }
     }
   };
@@ -122,6 +164,24 @@
         }
     }
 
+    .message-stream {
+        margin-bottom: 15pt;
+        .sender {
+            font-size: 14px;
+            color: #fff;
+        }
+        .message {
+            border-radius: 20px;
+            background: #fff;
+            android-elevation: 5pt;
+            font-size: 13px;
+            color: #333;
+            padding: 5pt 7pt;
+            margin-bottom: 8pt;
+        }
+    }
+
+
     .player {
         background: rgba(242,242,242, .5);
         android-elevation: 5pt;
@@ -141,7 +201,7 @@
         borderRadius: 100;
     }
 
-    .box {
+    .friends {
         margin-top: 20pt;
         padding: 20px;
         StackLayout {
