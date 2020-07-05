@@ -30,4 +30,78 @@ const bares = [
         "onlineusers": 99
     },
 ]
-module.exports = { bares }
+
+const people = [{
+    avatar: '~/images/people/1.jpg',
+    name: 'Alicia M.'
+},
+{
+    avatar: '~/images/people/2.jpg',
+    name: 'Sofia A.'
+},
+{
+    avatar: '~/images/people/3.jpg',
+    name: 'Pedro H.'
+},
+{
+    avatar: '~/images/people/4.jpg',
+    name: 'Marcos A.'
+},
+{
+    avatar: '~/images/people/5.jpg',
+    name: 'Gabriela K.'
+},
+{
+    avatar: '~/images/people/6.jpg',
+    name: 'Ronald R.'
+},
+{
+    avatar: '~/images/people/7.jpg',
+    name: 'Chalie J.'
+},
+{
+    avatar: '~/images/people/8.jpg',
+    name: 'Claude D.'
+},
+{
+    avatar: '~/images/people/9.jpg',
+    name: 'Milena L.'
+},
+{
+    avatar: '~/images/people/10.jpg',
+    name: 'Katarine O.'
+},
+{
+    avatar: '~/images/people/11.jpg',
+    name: 'Paulo R.'
+},
+{
+    avatar: '~/images/people/12.jpg',
+    name: 'Lucas P.'
+},
+{
+    avatar: '~/images/people/13.jpg',
+    name: 'Micael F.'
+},
+{
+    avatar: '~/images/people/14.jpg',
+    name: 'Matheus A.'
+}
+]
+
+const barTables = [
+    {
+        "name": "Mesa 1",
+        "members": people.slice(0, 3)
+    },
+    {
+        "name": "Mesa 2",
+        "members": people.slice(3, 8)
+    },
+    {
+        "name": "Mesa 3",
+        "members": people.slice(8)
+    }
+]
+
+module.exports = { bares, barTables }

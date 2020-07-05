@@ -20,7 +20,10 @@
 
 
             <ActionItem @tap="openScanner()">
-            <Image horizontalAlignment="right" src="~/images/ico-qrcode-action.png" width="23" />
+                <GridLayout columns="25, 20">
+                    <Image row="0" col="0" horizontalAlignment="right" src="~/images/ico-qrcode-action.png" width="23" />
+                    <Span row="0" col="1" />
+                </GridLayout>
             </ActionItem>
         </ActionBar>
 

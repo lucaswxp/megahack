@@ -21,12 +21,26 @@
                     <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
                     <Label col="1" text="SelectBar" class="p-r-10"/>
                 </GridLayout>
-
+                
                 <GridLayout columns="auto, *"
                             :class="'nt-drawer__list-item' + (selectedPage === 'TicketCredited' ? ' -selected': '')"
                             @tap="onNavigationItemTap(TicketCredited)">
                     <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
                     <Label col="1" text="TicketCredited" class="p-r-10"/>
+                </GridLayout>
+
+                <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'BarTables' ? ' -selected': '')"
+                            @tap="onNavigationItemTap(BarTables)">
+                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="1" text="BarTables" class="p-r-10"/>
+                </GridLayout>
+
+                <GridLayout columns="auto, *"
+                            :class="'nt-drawer__list-item' + (selectedPage === 'SelectedTable' ? ' -selected': '')"
+                            @tap="onNavigationItemTap(SelectedTable)">
+                    <Label col="0" text.decode="&#xf015;" class="nt-icon fas"/>
+                    <Label col="1" text="SelectedTable" class="p-r-10"/>
                 </GridLayout>
 
                 <GridLayout columns="auto, *"
@@ -67,6 +81,8 @@
   import Home from "./Home";
   import Browse from "./Browse";
   import SelectBar from "./SelectBar";
+  import SelectedTable from "./SelectedTable";
+  import BarTables from "./BarTables";
   import Featured from "./Featured";
   import Search from "./Search";
   import TicketCredited from "./TicketCredited";
@@ -84,6 +100,8 @@
         Home: Home,
         Browse: Browse,
         SelectBar: SelectBar,
+        SelectedTable: SelectedTable,
+        BarTables: BarTables,
         Featured: Featured,
         Search: Search,
         Settings: Settings,
