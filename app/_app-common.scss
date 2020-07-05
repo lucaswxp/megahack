@@ -64,3 +64,14 @@ Page {
 [fontAttributes=Bold] {
     font-weight: bold;
 }
+
+.wrap {
+    margin: 0 20pt;
+}
+
+.box {
+    border-radius: 20px;
+    margin: 0 20pt;
+    background: #fff;
+    android-elevation: 5pt;
+}

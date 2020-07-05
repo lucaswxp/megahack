@@ -15,33 +15,38 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Label class="h1 wrap" :text="bars[0].title" />
 
-            <ActionItem @tap="openCamToScan"
-                        ios.systemIcon="16" ios.position="right"
-                        text="Ler QRCode" android.position="popup" />
+            <Label class="action-name" :text="bars[0].title" />
 
+            <ActionItem>
+                <GridLayout columns="25, 20">
+                    <Image row="0" col="0" horizontalAlignment="right" src="~/images/ico-drink.png" width="21" />
+                    <Span row="0" col="1" />
+                </GridLayout>
+            </ActionItem>
         </ActionBar>
 
         <GridLayout columns="*" rows="auto,auto,*" @tap="showModal">
             <!-- musica tocando -->
-            <StackLayout columns="10,auto" rows="auto" row="0" col="0">
-                <Image src="~/images/bares/sinuca.png"
-                width="10" row="0" col="0" />
-                <Label text="Tocando agora: Red Hot Chili Peppers - Californication" row="0" col="1" />
+            <StackLayout class="player wrap" orientation="horizontal" col="0" row="0">
+                <Image src="~/images/ico-music.png"
+                width="9" />
+                
+                <Label textWrap="true">
+                    <FormattedString>
+                        <Span text="Tocando agora: " fontAttributes="Bold" />
+                        <Span text="Red Hot Chili Peppers - Californication" />
+                    </FormattedString>
+                </Label>
             </StackLayout>
 
             <!-- barra de amigos na mesa -->
-            <StackLayout rows="75" columns="*" row="1" col="0">
-                <ScrollView orientation="horizontal" col="0" row="1">
-                    <StackLayout orientation="horizontal" class="scroll-menu box" v-for="(table,index) in tables" :key="index">
-                        <StackLayout columns="auto " rows="auto,*" v-for="(person,index) in table.members" :key="index">
-                            <Image :src="person.avatar"
-                            width="50" class="img-circle" borderRadius="100" row="0" col="0" />
-                            <Label :text="person.name" row="1" col="0" />
-                        </StackLayout>
-                    </StackLayout>
-                </ScrollView>
+            <StackLayout  class="scroll-menu box" orientation="horizontal" col="0" row="1">
+                <StackLayout v-for="(person,index) in table.members" :key="index">
+                    <Image :src="person.avatar"
+                    width="50" class="img-circle" borderRadius="100" row="0" col="0" />
+                    <Label :text="person.name" row="1" col="0" />
+                </StackLayout>
             </StackLayout>
 
             <!-- Chat -->
@@ -61,7 +66,7 @@
   export default {
     data: () => ({
         bars: fixture.bares,
-        tables:  fixture.barTables
+        table:  fixture.barTables[2]
     }),
     computed: {
       message() {
@@ -87,65 +92,38 @@
     Page {
         background: linear-gradient(#8E00FE, #a163de);
     }
-    .box, .wrap {
-        margin: 0 40px;
+
+    .player {
+        background: rgba(242,242,242, .5);
+        android-elevation: 5pt;
+        border-radius: 30pt;
+        height: 20pt;
+        Image {
+            margin: 0 5pt 0 10pt;
+
+        }
+        Label {
+            color: #fff;
+        }
     }
 
-    .h1 {
-        color: #fff;
-        font-size: 18px;
-        font-weight:bold;
-        //margin: 20px 0;
-    }
 
     .img-circle {
         borderRadius: 100;
     }
 
     .box {
-        border-radius: 20px;
-        background: #fff;
-        box-shadow: 2px 2px 1px rgba(255, 255, 255, .25);
-        margin: 40px;
+        margin-top: 20pt;
         padding: 20px;
-        .heading {
-            font-size: 18px;
-            font-weight: bold;
+        StackLayout {
+            
         }
-        .p {
-            font-size: 16px;
-        }
-        // lista de bares
-        GridLayout {
-            margin-right: 20px;
-            Image {
-                border-radius: 18px;
-                margin-bottom: 3px;
-            }
-        }
-    }
-    .box-qrcode {
-        Label {
-            margin: 0 32px;
-        }
-    }
-    .box-ticket {
-        border: 1px solid #000;
-        .progressbar {
-            height: 24px;
-            background: #AEAEAE;
-            border-radius:  16px;
-            .progress {
-                transition: width 0.3s linear;
-                height: 100%;
-                width: 0;
-                border-radius: 16px;
-                background: linear-gradient(to right, #8E00FE, #a163de);
-            }
+        Image {
+            margin: 0 9pt;
         }
         Label {
             text-align: center;
-            font-size: 12px;
+            font-size: 10pt;
         }
     }
     // Custom styles
