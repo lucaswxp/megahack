@@ -28,7 +28,7 @@ const bares = [
         "logo": "~/images/bares/praia.png",
         "capa": "~/images/bares/generico1.jpg",
         "onlineusers": 99
-    },
+    }
 ]
 
 const people = [{
@@ -96,11 +96,17 @@ const barTables = [
     },
     {
         "name": "Mesa 2",
-        "members": people.slice(3, 8)
+        "members": people.slice(3, 8),
+        "private": true
     },
     {
         "name": "Mesa 3",
-        "members": people.slice(8)
+        "members": people.slice(8,13),
+        "private": true
+    },
+    {
+        "name": "Mesa 4",
+        "members": people.slice(13)
     }
 ]
 

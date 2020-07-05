@@ -15,29 +15,36 @@
                         android:visibility="collapsed"
                         @tap="onDrawerButtonTap"
                         ios.position="left"/>
-            <Label class="h1 wrap" :text="barName" />
 
-            <ActionItem @tap="openCamToScan"
-                        ios.systemIcon="16" ios.position="right"
-                        text="Ler QRCode" android.position="popup" />
+            <Label class="action-name" :text="barName" />
+
+            <ActionItem>
+                <GridLayout columns="25, 20">
+                    <Image row="0" col="0" horizontalAlignment="right" src="~/images/ico-drink.png" width="21" />
+                    <Span row="0" col="1" />
+                </GridLayout>
+            </ActionItem>
 
         </ActionBar>
 
-        <ListView for="(table,index) in tables" :key="index">
+        <ListView for="table in tables" separatorColor="transparent">
             <v-template>
-                <StackLayout rows="auto,auto" columns="*">
-                    <Label class="h1 wrap" textWrap="true" row="0" col="0">
-                        <FormattedString>
-                            <Span :text="table.name + ' - '" fontAttributes="Bold" class="table-label" />
-                            <Span :text="online(table) + ' online'" class="online" />
-                        </FormattedString>
-                    </Label>
+                <StackLayout >
+                    <GridLayout columns="auto, auto">
+                        <Label class="h1 wrap" textWrap="true" row="0" col="0">
+                            <FormattedString>
+                                <Span :text="table.name + ' - '" fontAttributes="Bold" class="table-label" />
+                                <Span :text="online(table) + ' online'" class="online" />
+                            </FormattedString>
+                        </Label>
+                        <Image src="~/images/ico-lock.png" v-if="table.private" style="text-align:right" row="0" col="1" width="12" />
+                    </GridLayout>
 
-                    <ScrollView orientation="horizontal" col="0" row="1">
-                    <StackLayout orientation="horizontal" class="scroll-menu box">
-                        <Image v-for="(itemMember,indexx) in table.members" :key="indexx" :src="itemMember.avatar"
-                            width="50" class="img-circle" borderRadius="100" />
-                    </StackLayout>
+                    <ScrollView orientation="horizontal">
+                        <StackLayout orientation="horizontal" class="scroll-menu box">
+                            <Image v-for="itemMember in table.members" :src="itemMember.avatar"
+                                width="50" class="img-circle" borderRadius="100" />
+                        </StackLayout>
                     </ScrollView>
                 </StackLayout>
             </v-template>
@@ -116,7 +123,7 @@
         box-shadow: 2px 2px 1px rgba(255, 255, 255, .25);
         margin: 5pt;
         Image {
-            margin: 0 5pt;
+            margin: 0 9pt;
         }
         .heading {
             font-size: 18px;
@@ -124,14 +131,6 @@
         }
         .p {
             font-size: 16px;
-        }
-        // lista de bares
-        GridLayout {
-            margin-right: 20px;
-            Image {
-                border-radius: 18px;
-                margin-bottom: 3px;
-            }
         }
     }
     .table-label {
