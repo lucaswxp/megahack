@@ -23,9 +23,9 @@
 
         </ActionBar>
 
-        <GridLayout columns="*" rows="auto,auto,*" @tap="showModal">
+        <GridLayout columns="*" rows="auto,auto,*">
             <!-- musica tocando -->
-            <StackLayout columns="10,auto" rows="auto" row="0" col="0">
+            <StackLayout columns="10,auto" rows="auto" row="0" col="0"  @tap="showModal">
                 <Image src="~/images/bares/sinuca.png"
                 width="10" row="0" col="0" />
                 <Label text="Tocando agora: Red Hot Chili Peppers - Californication" row="0" col="1" />
@@ -45,7 +45,17 @@
             </StackLayout>
 
             <!-- Chat -->
-            <StackLayout>
+            <StackLayout row="2" col="0">
+                <ScrollView height="90%">
+                        <!--the chat takes place here--> 
+                </ScrollView>
+
+                <StackLayout height="10%">
+                    <GridLayout columns="*,auto" style="padding: 10">
+                        <TextField textfieldclass="chatTextField" row="0" col="0" v-model="message"></TextField>
+                        <Button btnclass="chatBtn" row="0" col="1" text="enviar" @tap="chat(message)"></Button>
+                    </GridLayout>
+                </StackLayout>
             </StackLayout>
 
         </GridLayout>
@@ -78,7 +88,8 @@
     },
     data: () => ({
         progress: '0%',
-        bars:  fixture.barTables
+        bars:  fixture.barTables,
+        message: ""
     }),
     computed: {
       message() {
@@ -94,6 +105,9 @@
       },
       showModal() {
         this.$showModal(ModalDrink);
+      },
+      chat(message) {
+          alert(message)
       }
     }
   };
