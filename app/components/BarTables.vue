@@ -33,7 +33,7 @@
                     <GridLayout columns="auto, auto">
                         <Label class="h1 wrap" textWrap="true" row="0" col="0">
                             <FormattedString>
-                                <Span :text="table.name + ' - '" fontAttributes="Bold" class="table-label" />
+                                <Span :text="getTableName(table) + ' - '" fontAttributes="Bold" class="table-label" />
                                 <Span :text="online(table) + ' online'" class="online" />
                             </FormattedString>
                         </Label>
@@ -87,7 +87,12 @@
     },
     methods: {
       online(table){
+          if(table == fixture.barTables[0]) return 1
           return table.members.length
+      },
+      getTableName(table){
+          if(table == fixture.barTables[0]) return 'Sua mesa'
+          return table.name
       },
       onDrawerButtonTap() {
         utils.showDrawer();

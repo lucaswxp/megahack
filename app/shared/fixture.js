@@ -1,6 +1,6 @@
 const bares = [
     {
-        "title": "Barba Rock",
+        "title": "Bar do Rock",
         "logo": "~/images/bares/rock.png",
         "capa": "~/images/bares/generico0.jpg",
         "onlineusers": 115
@@ -34,10 +34,9 @@ const bares = [
 const people = [{
     avatar: '~/images/people/1.jpg',
     name: 'Alicia M.'
-},
-{
-    avatar: '~/images/people/2.jpg',
-    name: 'Sofia A.'
+},{
+    avatar: '~/images/ico-invite.png',
+    name: 'Alicia M.'
 },
 {
     avatar: '~/images/people/3.jpg',
@@ -92,12 +91,11 @@ const people = [{
 const barTables = [
     {
         "name": "Mesa 1",
-        "members": people.slice(0, 3)
+        "members": people.slice(1, 3).reverse()
     },
     {
         "name": "Mesa 2",
-        "members": people.slice(3, 8),
-        "private": true
+        "members": people.slice(3, 8)
     },
     {
         "name": "Mesa 3",

@@ -18,7 +18,7 @@
 
             <Label class="action-name" :text="bars[0].title" />
 
-            <ActionItem>
+            <ActionItem @tap="showModal">
                 <GridLayout columns="25, 20">
                     <Image row="0" col="0" horizontalAlignment="right" src="~/images/ico-drink.png" width="21" />
                     <Span row="0" col="1" />

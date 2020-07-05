@@ -1,6 +1,6 @@
 <template>
-	<StackLayout class="box" backgroundColor="white" columns="*"
-        rows="auto,41" class="box-modal">
+	<StackLayout class="box box-modal" backgroundColor="white" columns="*"
+        rows="auto,41">
         <GridLayout row="0" col="0" columns="70,*" rows="auto" class="p-20">
             <Image src="https://i.ya-webdesign.com/images/drink-png-black.png"
                 width="50" row="0" col="0" />

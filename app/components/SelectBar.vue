@@ -85,6 +85,7 @@
   export default {
     mounted() {
       SelectedPageService.getInstance().updateSelectedPage("Home");
+
     },
     data: () => ({
         bares: fixture.bares,
