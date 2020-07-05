@@ -52,8 +52,8 @@
 
                 <StackLayout height="10%">
                     <GridLayout columns="*,auto" style="padding: 10">
-                        <TextField textfieldclass="chatTextField" row="0" col="0" v-model="message"></TextField>
-                        <Button btnclass="chatBtn" row="0" col="1" text="enviar" @tap="chat(message)"></Button>
+                        <TextField class="chatTextField" row="0" col="0" v-model="message"></TextField>
+                        <Button class="chatBtn" row="0" col="1" text="enviar" @tap="chat(message)"></Button>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>
