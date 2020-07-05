@@ -47,13 +47,24 @@
             <!-- Chat -->
             <StackLayout row="2" col="0">
                 <ScrollView height="90%">
-                        <!--the chat takes place here--> 
+                    <ListView for="(item,index) in messages" :key="index">
+                        <v-template>
+                            <StackLayout rows="auto,auto" columns="*">
+                                <Label :text="item.name" row="0" col="0" />
+                                <Label class="h1 wrap" textWrap="true" row="1" col="0">
+                                    <FormattedString>
+                                        <Span :text="item.message" />
+                                    </FormattedString>
+                                </Label>
+                            </StackLayout>
+                        </v-template>
+                    </ListView>
                 </ScrollView>
 
                 <StackLayout height="10%">
                     <GridLayout columns="*,auto" style="padding: 10">
                         <TextField textfieldclass="chatTextField" row="0" col="0" v-model="message"></TextField>
-                        <Button btnclass="chatBtn" row="0" col="1" text="enviar" @tap="chat(message)"></Button>
+                        <Button btnclass="chatBtn" row="0" col="1" text="enviar" @tap="chat"></Button>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>
@@ -89,7 +100,12 @@
     data: () => ({
         progress: '0%',
         bars:  fixture.barTables,
-        message: ""
+        message: "",
+        messages: [
+            {name:"Ana F.", message: "Oiie gente!!"},
+            {name:"Isabel M.", message: "Fala galerinha o/"},
+            {name:"Estevão S.", message: "Boa noite primeiramente ...."}
+        ]
     }),
     computed: {
       message() {
@@ -106,8 +122,8 @@
       showModal() {
         this.$showModal(ModalDrink);
       },
-      chat(message) {
-          alert(message)
+      chat() {
+          alert(this.message)
       }
     }
   };
