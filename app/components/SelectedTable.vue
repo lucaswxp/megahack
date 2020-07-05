@@ -51,14 +51,14 @@
 
             <!-- Chat -->
             <StackLayout row="2" col="0">
-                <ScrollView height="90%">
+                <ScrollView height="80%">
                         <!--the chat takes place here--> 
                 </ScrollView>
 
-                <StackLayout height="10%">
-                    <GridLayout columns="*,auto" style="padding: 10">
-                        <TextField class="chatTextField" row="0" col="0" v-model="message"></TextField>
-                        <Button class="chatBtn" row="0" col="1" text="enviar" @tap="chat(message)"></Button>
+                <StackLayout height="20%" class="message-input">
+                    <GridLayout columns="auto,*" style="padding: 10">
+                        <Image src="~/images/ico-chat-smile.png" width="26" row="0" col="0" />
+                        <TextField class="chatTextField" row="0" @tap="cleanMessage" col="1" v-model="message"></TextField>
                     </GridLayout>
                 </StackLayout>
             </StackLayout>
@@ -75,14 +75,9 @@
 
   export default {
     data: () => ({
-<<<<<<< HEAD
         bars: fixture.bares,
-        table:  fixture.barTables[2]
-=======
-        progress: '0%',
-        bars:  fixture.barTables,
-        message: ""
->>>>>>> a27d1bc661f33fdc7a4bbd1ca5012362526474eb
+        table:  fixture.barTables[2],
+        message: "Fale um oi..."
     }),
     computed: {
       message() {
@@ -92,6 +87,9 @@
     methods: {
       onDrawerButtonTap() {
         utils.showDrawer();
+      },
+      cleanMessage() {
+          this.message = ''
       },
       count(table){
           return table.members.length
@@ -110,6 +108,18 @@
 
     Page {
         background: linear-gradient(#8E00FE, #a163de);
+    }
+
+    .message-input {
+        TextField {
+            background: rgba(242,242,242, .8);
+            height: 37pt;
+            border-radius: 16pt;
+            color: #666;
+            font-size: 14px;
+            padding-left: 15pt;
+            android-elevation: 3pt;
+        }
     }
 
     .player {
