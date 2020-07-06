@@ -1,6 +1,6 @@
 # MEGAHACK - TIME 14
 
-Integrantes: Anderson de Castro, Leonardo, Luana, Lucas Pelegrino, Ruth
+Integrantes: Anderson de Castro, Leonardo Araujo, Luana Macedo, Lucas Pelegrino, Ruth Brito
 
 # Instruções
 
